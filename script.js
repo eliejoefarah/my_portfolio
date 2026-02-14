@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // or add a class 'fade-up' to elements we want to animate.
     // For now, let's target sections and cards.
 
-    const animateElements = document.querySelectorAll('.section-header, .about-grid, .timeline-item, .project-card, .contact-content');
+    const animateElements = document.querySelectorAll('.section-header, .about-grid, .timeline-item, .project-card, .contact-content, .hobby-item');
 
     animateElements.forEach(el => {
         el.style.opacity = '0';

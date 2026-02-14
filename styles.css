@@ -601,6 +601,75 @@ img {
     margin-top: auto;
 }
 
+/* Hobbies / Life Beyond Code */
+.section-description {
+    max-width: 700px;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.hobby-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 300px;
+    /* Fixed height for uniformity */
+    cursor: none;
+    /* Custom cursor */
+}
+
+.hobby-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    filter: grayscale(20%);
+}
+
+.hobby-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.hobby-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(11, 12, 21, 0.9), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hobby-item:hover .hobby-overlay {
+    opacity: 1;
+}
+
+.hobby-overlay span {
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.hobby-item:hover .hobby-overlay span {
+    transform: translateY(0);
+}
+
+
 /* Contact */
 .contact-container {
     text-align: center;
