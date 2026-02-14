@@ -1,0 +1,198 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[top=1in,bottom=0.4in,left=0.75in,right=0.75in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{fontawesome5}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\pagenumbering{gobble}
+
+\newcommand{\sectionhr}[1]{
+  \section*{#1}
+  \noindent\hrule\vspace{0.4em}
+}
+
+\titlespacing*{\section}{0pt}{0.5em}{0.3em}
+\setlist[itemize]{leftmargin=*, before=\vspace{-0.3em}, after=\vspace{-0.3em}, itemsep=0.2em, parsep=0em}
+
+\newcommand{\cventry}[5]{
+  \noindent\textbf{#1} — \textit{#2} \hfill \textit{#3 — #4} 
+  #5
+}
+
+\newcommand{\projectentry}[4]{
+  \noindent\textbf{#1} \quad\textbar\quad \textit{#2}\newline
+  \vspace{-1.25em}
+  #3
+  #4
+}
+
+\usepackage{charter}
+
+\begin{document}
+
+\vspace*{-2.5cm}
+
+% ------------------------------------
+% HEADER
+% ------------------------------------
+\begin{center}
+{\huge \textbf{Elie-Joe Farah}}\\[0.3em]
+
+\small
+\faEnvelope\ \href{mailto:eliejoefarah@gmail.com}{eliejoefarah@gmail.com} \hspace{1em}
+\faPhoneSquare\ +32 (0)498 21 71 68 \hspace{1em}
+\faMapMarker\ Brussels, Belgium \hspace{1em}
+\faLinkedin\ \href{https://www.linkedin.com/in/elie-joe-farah-7b1586230/}{linkedin}
+\end{center}
+
+% ------------------------------------
+% EDUCATION
+% ------------------------------------
+\sectionhr{Education}
+\noindent\textbf{BE in Computer Engineering, Dean's Honor List} — Lebanese American University \hfill \textit{2021--2025}\\
+\noindent\textbf{Master en Ingénieur Civil en Informatique} — Université Libre de Bruxelles  \hfill \textit{2025--present}
+
+% ------------------------------------
+% EXPERIENCE
+% ------------------------------------
+\sectionhr{Professional Experience}
+
+\cventry{QA Intern}{FOO}{Beirut}{Jun 2025 -- Jul 2025}{
+  \begin{itemize}
+    \item Executed 2,500+ mobile/web test cases, contributing to early detection of regressions in production-facing applications.
+    \item Reported 25+ critical bugs via Jira, improving workflow clarity and test coverage.
+    \item Coordinated with developers to refine documentation and accelerate issue resolution.
+  \end{itemize}
+}
+
+\cventry{Software Development and QA Intern}{ITG - ITB}{Beirut}{Jun 2024 -- Aug 2024}{
+  \begin{itemize}
+    \item Built a PHP Laravel backend demo with REST-style API structuring and authentication workflows.
+    \item Performed data-driven testing, identifying 20+ major issues and improving system stability.
+  \end{itemize}
+}
+
+\cventry{Hospital Information System Intern}{Hotel Dieu De France}{Beirut}{Jun 2023 -- Aug 2023}{
+  \begin{itemize}
+    \item Developed SAP/Oracle SQL reports supporting clinical analytics and hospital operations.
+    \item Optimized SQL queries, improving retrieval times and reporting reliability.
+  \end{itemize}
+}
+
+
+% ------------------------------------
+% RELEVANT COURSES
+% ------------------------------------
+% \sectionhr{Relevant Coursework}
+% \begin{itemize}
+%   \item \textbf{Image Processing} (Full marks) — convolution, edge detection, frequency-domain analysis, color spaces.
+%   \item \textbf{Information \& Coding Theory} (Full marks) — entropy, source/channel coding, error correction.
+% \end{itemize}
+
+
+%------------------------------------
+% PROJECTS
+% ------------------------------------
+\sectionhr{Technical Projects}
+\projectentry{Peer-to-Peer Energy Trading System}{Energy Systems, Distributed Logic}{}{
+  \begin{itemize}
+    \item Contributed to the design of a peer-to-peer energy trading system modeling prosumer and consumer interactions.
+    \item Developed optimization models to handle trading constraints and energy allocation.
+    \item Worked within a multi-member team on system design, testing, and validation.
+  \end{itemize}
+}
+\projectentry{AI-Aided Course Platform}{Python, SQL, LangChain, OpenAI API, React, Node.js}{}{
+  \begin{itemize}
+    \item Built an AI assistant enabling real-time querying of course content using LangChain and OpenAI.
+    \item Designed a full-stack system integrating backend APIs, SQL storage, and a React frontend, achieving 90\%+ response relevance in peer testing.
+  \end{itemize}
+}
+\projectentry{\href{https://github.com/eliejoefarah/Dna_PostgreSQL_Extension}{PostgreSQL DNA Sequence Extension}}{C, PostgreSQL, SP-GiST}{}{
+  \begin{itemize}
+    \item Developed custom DNA and k-mer data types with C-based functions for sequence processing.
+    \item Designed a trie-structured SP-GiST index enabling scalable k-mer queries.
+  \end{itemize}
+}
+\projectentry{\href{https://github.com/eliejoefarah/CompilerProjectULB}{yaLcc Compiler and LL(1) Parser}}{Java, JFlex, Compiler Design}{}{
+  \begin{itemize}
+    \item Implemented an LL(1) parser with grammar normalization and parsing-table generation.
+    \item Integrated a JFlex scanner and produced LaTeX parse-tree visualizations for debugging.
+  \end{itemize}
+}
+
+\projectentry{FPGA-Based Escape Room Game}{VHDL, Quartus II, DE2-115}{}{
+  \begin{itemize}
+    \item Built a two-player escape-room game using FSM-based VHDL architecture.
+    \item Integrated VGA, 7-segment displays, and IR-remote input on FPGA hardware.
+  \end{itemize}
+}
+
+  \projectentry{Personal Mobility Analytics \& Geospatial Visualization Platform}
+{Python, GeoPandas, OSMnx, NetworkX, Scikit-learn, OpenStreetMap}{}{
+  \begin{itemize}
+    \item Processed large-scale Google Location History data to reconstruct time-weighted visits and movement trajectories across multiple countries.
+    \item Implemented road-network map-matching using OpenStreetMap graphs and shortest-path routing to align noisy GPS traces with real infrastructure.
+    \item Built spatial intensity models (KDE, hexbin) to visualize movement density, dwell behavior, and frequented vs.\ unfrequented roads.
+    \item Classified visited locations by semantic purpose via nearest-POI spatial joins (amenities, transport, education, leisure).
+    \item Generated high-resolution static maps and animated temporal visualizations with performance-aware rendering and subsampling.
+  \end{itemize}
+}
+
+\projectentry{Personal Mobility Analytics \& Geospatial Visualization Platform}
+{Python, GeoPandas, OSMnx, NetworkX, Scikit-learn, OpenStreetMap}{}{
+  \begin{itemize}
+    \item Processed large-scale location data to reconstruct time-weighted trajectories and behavioral patterns across regions.
+    \item Built spatial models and visualizations (KDE, network mapping) to analyze movement density and semantic usage of locations.
+  \end{itemize}
+}
+
+
+
+% ------------------------------------
+% SKILLS
+% ------------------------------------
+\sectionhr{Skills}
+\begin{description}
+
+  \item[Programming Languages \& Frameworks:] 
+  Java, Python, C, C++, JavaScript, Django, MATLAB
+
+  \item[Web \& Database:] 
+  SQL, PostgreSQL, REST APIs, JSON, HTML, CSS, SAP ERP
+
+  % \item[Data \& AI:] 
+  % Machine Learning, NLP, LangChain, reinforcement learning
+
+  \item[Data \& Analytics:] 
+Data Cleaning, Data Visualization, Exploratory Data Analysis, Machine Learning, Geospatial Analysis, NLP
+
+\item[Systems \& Reliability:] 
+Testing, Verification, Debugging, Requirement Analysis, Traceability
+  \item[Tools:] 
+  Docker, Oracle SQL Developer, Quartus, ModelSim, Jira, Qase
+% \item[Hardware \& Systems:] 
+%   Microprocessors, Digital Design, FPGA, VHDL, Verilog, Assembly
+  \item[Languages:] 
+  English, Arabic, French
+
+\end{description}
+
+% ------------------------------------
+% VOLUNTEERING
+% ------------------------------------
+\sectionhr{Volunteering}
+
+\begin{itemize}
+  \item \textbf{My School Pulse}, 2018--2019 — Supported educational activities for hospitalized children.
+  \item \textbf{Heartbeat – La Chaine de l’Espoir}, 2019--2020 — Assisted efforts to expand access to healthcare.
+\end{itemize}
+
+\end{document}
+
+use resume.tex to create my website i want to make it look like  fashion website although i ama software engineer, make sure there is nit a lot o ftext
