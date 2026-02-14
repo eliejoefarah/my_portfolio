@@ -1,71 +1,92 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+    // --- Custom Cursor Logic ---
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
 
-        // Add a slight delay for the follower
-        setTimeout(() => {
-            follower.style.left = e.clientX + 'px';
-            follower.style.top = e.clientY + 'px';
-        }, 50);
+    window.addEventListener('mousemove', function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        // Dot follows instantly
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+
+        // Outline follows with slight delay/animation via CSS transition
+        // But we update position directly here
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
     });
 
-    // Hover effects for links
-    const links = document.querySelectorAll('a, .view-project, .menu-btn');
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            cursor.style.width = '50px';
-            cursor.style.height = '50px';
-            cursor.style.background = 'rgba(255, 255, 255, 0.1)';
-            cursor.style.border = 'none';
+    // Cursor interactions
+    const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .social-link');
+
+    hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorOutline.style.width = '60px';
+            cursorOutline.style.height = '60px';
+            cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         });
-        link.addEventListener('mouseleave', () => {
-            cursor.style.width = '10px';
-            cursor.style.height = '10px';
-            cursor.style.background = 'transparent';
-            cursor.style.border = '1px solid var(--color-text)';
+        el.addEventListener('mouseleave', () => {
+            cursorOutline.style.width = '40px';
+            cursorOutline.style.height = '40px';
+            cursorOutline.style.backgroundColor = 'transparent';
         });
     });
 
-    // Menu Toggle
-    const menuBtn = document.querySelector('.menu-btn');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    const menuLinks = document.querySelectorAll('.menu-link');
 
-    let isMenuOpen = false;
+    // --- Mobile Menu Toggle ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    menuBtn.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            menuOverlay.classList.add('active');
-            menuBtn.textContent = 'Close';
-            menuBtn.style.color = 'var(--color-bg)';
-        } else {
-            menuOverlay.classList.remove('active');
-            menuBtn.textContent = 'Menu';
-            menuBtn.style.color = 'var(--color-text)';
-        }
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
 
-    menuLinks.forEach(link => {
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            isMenuOpen = false;
-            menuOverlay.classList.remove('active');
-            menuBtn.textContent = 'Menu';
-            menuBtn.style.color = 'var(--color-text)';
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
         });
     });
 
-    // Scroll Reveal Animation (Intersection Observer)
+
+    // --- Scroll Animations (Intersection Observer) ---
     const observerOptions = {
-        threshold: 0.1
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target); // Animates only once
+            }
+        });
+    }, observerOptions);
+
+    // Apply strict CSS class for animation first
+    // We can add a utility class in JS or CSS, but let's do inline style manipulation for simplicity 
+    // or add a class 'fade-up' to elements we want to animate.
+    // For now, let's target sections and cards.
+
+    const animateElements = document.querySelectorAll('.section-header, .about-grid, .timeline-item, .project-card, .contact-content');
+
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease-out';
+        observer.observe(el);
+    });
+
+    // Add event listener to handle the 'in-view' logic manually since we are using inline styles for init
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -74,21 +95,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'all 1s ease';
-        observer.observe(section);
+    animateElements.forEach(el => {
+        scrollObserver.observe(el);
     });
 
-    // Smooth scroll for anchor links
+
+    // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                // Account for fixed header
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
         });
     });
 });
