@@ -116,6 +116,7 @@ img {
 .highlight {
     background: linear-gradient(120deg, var(--accent-primary), var(--accent-secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -434,13 +435,17 @@ img {
     margin-bottom: 1.5rem;
 }
 
-.tech-stack {
+.tech-stack-container {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.tech-stack h3 {
+.tech-category h3 {
     font-size: 1.1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-primary);
 }
 
 .tags {
