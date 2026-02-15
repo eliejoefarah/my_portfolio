@@ -739,11 +739,20 @@ img {
         margin-bottom: 2.5rem;
     }
 
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding-top: calc(var(--header-height) + 2rem);
+        padding-bottom: 4rem;
+        align-items: flex-start;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
-        padding-top: 2rem;
         gap: 2rem;
         text-align: center;
+        /* Remove padding-top from here as handled by .hero */
+        padding-top: 0;
     }
 
     .hero-content {
@@ -759,11 +768,15 @@ img {
         order: 1;
         display: flex;
         justify-content: center;
+        width: 100%;
+        /* Ensure it takes full width */
     }
 
     .code-block-wrapper {
         width: 100%;
         max-width: 400px;
+        /* Add some margin to separate from content */
+        margin-bottom: 1rem;
     }
 
     .hero-title {
