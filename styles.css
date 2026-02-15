@@ -799,6 +799,21 @@ img {
         opacity: 0;
     }
 
+    /* Hide custom cursor on mobile */
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+
+    /* Restore default cursor */
+    body,
+    a,
+    button,
+    .btn,
+    .hobby-item {
+        cursor: auto !important;
+    }
+
     .menu-toggle.active .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
