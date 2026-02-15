@@ -779,6 +779,10 @@ img {
         margin-bottom: 1rem;
     }
 
+    .scroll-indicator {
+        display: none;
+    }
+
     .hero-title {
         font-size: 3rem;
     }
