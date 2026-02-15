@@ -531,6 +531,17 @@ img {
     font-style: italic;
 }
 
+.timeline-content ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.timeline-content li {
+    margin-bottom: 0.5rem;
+}
+
 /* Projects */
 .projects-grid {
     display: grid;
