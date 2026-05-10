@@ -267,11 +267,12 @@
               <h3 class="project-title">BatteryLCATool</h3>
               <p class="project-description">
                 Full-stack multi-tenant platform for battery life-cycle
-                inventory modeling, allowing manufacturers to build process data
-                manually or import structured Excel templates. Designed with
-                FastAPI, PostgreSQL, Supabase Auth, and React, with validation
-                workflows, revision control, and secure role-based access via
-                Row-Level Security.
+                inventory modeling. Manufacturers model process inventories
+                manually or via Excel import; admins map flows to the ecoinvent
+                background database and export structured VUB-format workbooks
+                to Supabase Storage. Includes a Monte Carlo simulation engine
+                with parameterized uncertainty distributions and Spearman
+                correlation sensitivity analysis.
               </p>
               <ul class="project-tech-list">
                 <li>FastAPI</li>
@@ -279,6 +280,7 @@
                 <li>Supabase</li>
                 <li>React</li>
                 <li>TypeScript</li>
+                <li>NumPy / SciPy</li>
               </ul>
             </div>
           </article>
