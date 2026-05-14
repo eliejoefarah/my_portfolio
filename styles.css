@@ -268,6 +268,25 @@ img {
     margin-bottom: 2.5rem;
 }
 
+/* Hero Buttons Layout */
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.hero-buttons-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.cv-download-btn {
+    align-self: center;
+    margin-left: 0;
+}
+
 .hero-visual {
     position: relative;
 }
@@ -969,8 +988,11 @@ img {
     }
 
     .hero-buttons {
+        align-items: center;
+    }
+
+    .hero-buttons-row {
         justify-content: center;
-        display: flex;
     }
 
     .hero-visual {
