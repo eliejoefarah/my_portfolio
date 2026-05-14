@@ -274,6 +274,7 @@ img {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+    width: fit-content;
 }
 
 .hero-buttons-row {
@@ -989,10 +990,8 @@ img {
 
     .hero-buttons {
         align-items: center;
-    }
-
-    .hero-buttons-row {
-        justify-content: center;
+        width: auto;
+        align-self: center;
     }
 
     .hero-visual {
