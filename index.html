@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elie-Joe Farah | Software Engineer</title>
+    <meta name="description" content="Software Engineer building backends and data systems for complex, real-world problems. Projects in battery LCA modeling, AI platforms, and PostgreSQL internals." />
+    <meta property="og:title" content="Elie-Joe Farah | Software Engineer" />
+    <meta property="og:description" content="Software Engineer building backends and data systems for complex, real-world problems." />
+    <meta property="og:image" content="https://eliejoefarah.com/profile.JPG" />
+    <meta property="og:url" content="https://eliejoefarah.com" />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,14 +64,14 @@
             <span class="highlight">Systems & Data Platforms</span>
           </h2>
           <p class="hero-description">
-            I design and build data-driven software systems, from backend
-            architectures and APIs to analytical platforms. My work focuses on
-            structured data, scalable system design, and translating complex
-            problems into reliable software.
+            I build backends and data systems for problems that are messier than
+            a tutorial assumes — multi-tenant platforms, database extensions, AI
+            pipelines with real sensor data.
           </p>
           <div class="hero-buttons">
             <a href="#projects" class="btn btn-primary">View Work</a>
             <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            <a href="cv.pdf" download class="btn btn-secondary">Download CV</a>
           </div>
         </div>
         <div class="hero-visual">
@@ -282,6 +288,7 @@
                 <li>TypeScript</li>
                 <li>NumPy / SciPy</li>
               </ul>
+              <a href="battery-lca.html" class="project-view-link">View Project →</a>
             </div>
           </article>
           <!-- Project 4 -->
@@ -312,6 +319,7 @@
                 <li>Raspberry Pi</li>
                 <li>REST API</li>
               </ul>
+              <!-- <a href="ai-course.html" class="project-view-link">View Project →</a> -->
             </div>
           </article>
           <!-- Project 1 -->
@@ -333,14 +341,18 @@
               </div>
               <h3 class="project-title">PostgreSQL DNA Extension</h3>
               <p class="project-description">
-                A specialized PostgreSQL extension written in C for efficient
-                storage and querying of DNA sequences.
+                A PostgreSQL extension in C that adds native DNA sequence types
+                with bit-packed storage (2 bits per nucleotide) and k-mer
+                substring indexing via a SP-GiST trie. Enables typed DNA
+                columns, sequence alignment queries, and index-accelerated k-mer
+                lookups directly in SQL.
               </p>
               <ul class="project-tech-list">
                 <li>C</li>
                 <li>PostgreSQL</li>
                 <li>Database Internals</li>
               </ul>
+              <!-- <a href="dna-extension.html" class="project-view-link">View Project →</a> -->
             </div>
           </article>
           <!-- Project 5 -->
@@ -393,9 +405,10 @@
               </div>
               <h3 class="project-title">yaLcc Compiler</h3>
               <p class="project-description">
-                A custom compiler implementation for a subset of C-like language
-                features. Handles lexical analysis, parsing, and code
-                generation.
+                A compiler for a C-like language, built from scratch in Java.
+                Implements lexical analysis with JFlex, a recursive descent
+                parser, symbol table and type checking, and IR code generation.
+                Handles functions, control flow, arrays, and structs.
               </p>
               <ul class="project-tech-list">
                 <li>Java</li>
@@ -418,8 +431,11 @@
               </div>
               <h3 class="project-title">P2P Energy Trading Platform</h3>
               <p class="project-description">
-                Simulation platform for peer-to-peer energy trading using
-                distributed logic and optimization algorithms for smart grids.
+                Simulation of a peer-to-peer energy market for smart grids,
+                where prosumers trade surplus solar energy via smart contracts on
+                Ethereum. Implements a clearing algorithm that matches bids and
+                asks at a local market price, reducing grid export costs compared
+                to a centralized utility model.
               </p>
               <ul class="project-tech-list">
                 <li>Solidity</li>
@@ -440,9 +456,7 @@
         </div>
 
         <p class="section-description">
-          When I'm not building systems, I'm out exploring the hidden gems of
-          Lebanon. Leading hiking trips and discovering nature fuels my
-          creativity.
+          When I'm not building systems, I'm out exploring Lebanon on foot.
         </p>
 
         <div class="hobbies-grid">
