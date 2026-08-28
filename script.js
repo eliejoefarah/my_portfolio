@@ -36,6 +36,12 @@
 
   var visible = new Set();
 
+  function setActive(section) {
+    navLinks.forEach(function (l) { l.classList.remove('active'); });
+    var link = linkFor.get(section);
+    if (link) link.classList.add('active');
+  }
+
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) visible.add(entry.target);
@@ -46,11 +52,23 @@
     visible.forEach(function (s) {
       if (!current || s.getBoundingClientRect().top < current.getBoundingClientRect().top) current = s;
     });
-    if (!current) return;
-
-    navLinks.forEach(function (l) { l.classList.remove('active'); });
-    linkFor.get(current).classList.add('active');
+    if (current) setActive(current);
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
   sections.forEach(function (s) { observer.observe(s); });
+
+  // #contact dropped its own forced full-viewport height so it shares one scroll
+  // stop with the footer — it's often too short to ever cross the observer's
+  // center band, so the last nav link never gets marked active at the bottom
+  // of the page without this explicit check.
+  var lastSection = sections[sections.length - 1];
+  var ticking = false;
+  function checkBottom() {
+    ticking = false;
+    var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom && lastSection) setActive(lastSection);
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(checkBottom); }
+  }, { passive: true });
 })();
