@@ -45,7 +45,13 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scrollbar-color: var(--accent) var(--paper); scrollbar-width: thin; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--accent) var(--paper); scrollbar-width: thin;
+  /* Snap container: scroll-padding-top offsets both fragment-link jumps and
+     snap stops by the sticky header's height so section tops aren't hidden under it. */
+  scroll-snap-type: y proximity; scroll-padding-top: var(--header-h);
+}
 
 body {
   margin: 0;
@@ -145,7 +151,10 @@ nav.top a.active { color: var(--accent); }
 .theme-toggle .glyph { font-size: 13px; }
 
 /* ---------- Sections / grid ---------- */
-section { padding: 88px 0; border-top: 1px solid var(--rule); }
+section {
+  padding: 88px 0; border-top: 1px solid var(--rule);
+  min-height: 100vh; scroll-snap-align: start;
+}
 .row { display: grid; grid-template-columns: var(--gutter) 1fr; gap: 40px; }
 .eyebrow { padding-top: 6px; }
 .eyebrow .idx { display: block; color: var(--accent); margin-bottom: 6px; }
@@ -381,4 +390,11 @@ footer .fin span { font-family: var(--mono); font-size: 11.5px; color: var(--ink
 @media (prefers-reduced-motion: reduce) {
   .band .strip .ph img { transition: none; }
   body { transition: none; }
+  html { scroll-snap-type: none; scroll-behavior: auto; }
+}
+
+/* Normal mobile scroll — no paged/snap feel below tablet width. */
+@media (max-width: 768px) {
+  html { scroll-snap-type: none; }
+  section { min-height: auto; scroll-snap-align: none; }
 }
