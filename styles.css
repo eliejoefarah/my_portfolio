@@ -151,10 +151,11 @@ nav.top a.active { color: var(--accent); }
 .theme-toggle .glyph { font-size: 13px; }
 
 /* ---------- Sections / grid ---------- */
-section {
-  padding: 88px 0; border-top: 1px solid var(--rule);
-  min-height: 100vh; scroll-snap-align: start;
-}
+section { padding: 88px 0; border-top: 1px solid var(--rule); }
+/* Scoped to body>section (the homepage's top-level sections) rather than plain
+   `section`, so it doesn't also force full-viewport height on the project detail
+   pages' nested <section class="pd-section"> content blocks. */
+body > section { min-height: 100vh; scroll-snap-align: start; }
 .row { display: grid; grid-template-columns: var(--gutter) 1fr; gap: 40px; }
 .eyebrow { padding-top: 6px; }
 .eyebrow .idx { display: block; color: var(--accent); margin-bottom: 6px; }
@@ -315,12 +316,18 @@ h2.sec {
 .contact .links a:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ---------- Footer ---------- */
-footer.site { border-top: 1px solid var(--rule); padding: 26px 0; }
+/* scroll-snap-align:end gives the footer its own valid snap point — without it,
+   proximity snapping pulls the resting scroll back up to #contact's start and the
+   footer becomes unreachable by a normal end-of-page scroll. */
+footer.site { border-top: 1px solid var(--rule); padding: 26px 0; scroll-snap-align: end; }
 footer .fin {
   max-width: var(--maxw); margin: 0 auto; padding: 0 32px;
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
 }
 footer .fin span { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); letter-spacing: .04em; }
+.fin-sig { display: inline-flex; align-items: center; gap: 10px; }
+.fin-sig .seal { width: 48px; height: 48px; object-fit: contain; opacity: .6; transition: opacity .15s ease; }
+.fin-sig:hover .seal { opacity: 1; }
 
 /* ---------- Project detail pages ---------- */
 .proj-page { max-width: var(--maxw); margin: 0 auto; padding: 48px 32px 0; }
@@ -396,5 +403,5 @@ footer .fin span { font-family: var(--mono); font-size: 11.5px; color: var(--ink
 /* Normal mobile scroll — no paged/snap feel below tablet width. */
 @media (max-width: 768px) {
   html { scroll-snap-type: none; }
-  section { min-height: auto; scroll-snap-align: none; }
+  body > section { min-height: auto; scroll-snap-align: none; }
 }
