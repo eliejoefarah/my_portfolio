@@ -1,181 +1,117 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PostgreSQL DNA Extension | Elie-Joe Farah</title>
-    <meta name="description" content="A PostgreSQL extension in C adding native DNA sequence types with bit-packed storage and SP-GiST trie indexing for k-mer queries." />
-    <meta property="og:title" content="PostgreSQL DNA Extension | Elie-Joe Farah" />
-    <meta property="og:description" content="Custom PostgreSQL extension in C with bit-packed DNA types and SP-GiST trie index for efficient k-mer querying." />
-    <meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  </head>
+<head>
+<meta charset="UTF-8" />
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PostgreSQL DNA Extension | Elie-Joe Farah</title>
+<meta name="description" content="A PostgreSQL extension in C adding native DNA sequence types with bit-packed storage and SP-GiST trie indexing for k-mer queries." />
+<meta property="og:title" content="PostgreSQL DNA Extension | Elie-Joe Farah" />
+<meta property="og:description" content="Custom PostgreSQL extension in C with bit-packed DNA types and SP-GiST trie index for efficient k-mer querying." />
+<meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-  <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<header class="site">
+  <div class="site-inner">
+    <a href="index.html" class="brand">EJF<b>.</b></a>
+    <div class="header-right">
+      <nav class="top">
+        <a href="index.html#about">about</a>
+        <a href="index.html#experience">experience</a>
+        <a href="index.html#projects">projects</a>
+        <a href="index.html#research">research</a>
+        <a href="index.html#contact">contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
+        <span class="glyph">◐</span><span class="txt">light</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo">EJF<span class="dot">.</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="index.html#education" class="nav-link">Education</a></li>
-          <li class="nav-item"><a href="index.html#experience" class="nav-link">Experience</a></li>
-          <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
-          <li class="nav-item"><a href="index.html#contact" class="nav-link nav-btn">Contact</a></li>
-        </ul>
+<main class="proj-page">
+  <a href="index.html#projects" class="proj-back">← Back to projects</a>
+
+  <div class="proj-hero">
+    <div class="plabel">P—02 · Database internals · C</div>
+    <h1>PostgreSQL DNA Extension</h1>
+    <p class="pitch">A C extension for PostgreSQL that adds native DNA sequence types with efficient bit-packed storage and a SP-GiST trie index — enabling typed DNA columns and index-accelerated k-mer queries directly in SQL.</p>
+    <div class="stack"><span>C</span><span>PostgreSQL</span><span>Database Internals</span><span>SP-GiST</span></div>
+    <!-- ADD: terminal screenshot of a k-mer query running against the extension -->
+    <!-- <figure class="shot"><img src="screenshots/dna-query.png" alt="k-mer query terminal output" /></figure>
+    <p class="shot-cap">Running a k-mer containment query on a DNA sequence column — the SP-GiST index makes this a trie traversal rather than a full scan.</p> -->
+  </div>
+
+  <section class="pd-section">
+    <h2>The Problem</h2>
+    <p>PostgreSQL has no native DNA sequence type. Storing sequences as plain <code>TEXT</code> wastes 4× the memory (one byte per nucleotide instead of 2 bits), and k-mer substring queries require full-sequence scans with pattern matching. For bioinformatics workloads with large sequence tables, this is both slow and storage-heavy. The goal was to build a proper typed extension with compact storage and an index structure suited to the query patterns DNA data actually generates.</p>
+  </section>
+
+  <section class="pd-section">
+    <h2>What I Built</h2>
+
+    <div class="feature">
+      <div>
+        <h3>Bit-Packed DNA Type</h3>
+        <p>Each nucleotide is encoded in 2 bits (A=00, C=01, G=10, T=11), packing four bases per byte. The custom type implements PostgreSQL's <code>varlena</code> interface for variable-length storage, with input/output functions that handle ASCII ↔ bit-packed conversion transparently.</p>
       </div>
-    </nav>
+      <!-- ADD: screenshot or diagram showing storage layout -->
+      <div class="imgph">screenshot: \d+ output or storage diagram</div>
+    </div>
 
-    <main class="container project-page">
-
-      <a href="index.html#projects" class="back-link">
-        <i class="fas fa-arrow-left"></i> Back to Projects
-      </a>
-
-      <!-- Hero -->
-      <div class="project-hero-block">
-        <p class="project-label">Systems / Database Internals</p>
-        <h1>PostgreSQL DNA Extension</h1>
-        <p class="project-pitch">
-          A C extension for PostgreSQL that adds native DNA sequence types with
-          efficient bit-packed storage and a SP-GiST trie index — enabling typed
-          DNA columns and index-accelerated k-mer queries directly in SQL.
-        </p>
-        <div class="project-hero-tags">
-          <span class="tag">C</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Database Internals</span>
-          <span class="tag">SP-GiST</span>
-        </div>
-        <!-- ADD: terminal screenshot of a k-mer query running against the extension -->
-        <!-- <img src="screenshots/dna-query.png" alt="k-mer query terminal output" class="project-screenshot-main" /> -->
-        <!-- <p class="screenshot-caption">Running a k-mer containment query on a DNA sequence column — the SP-GiST index makes this a trie traversal rather than a full scan.</p> -->
+    <div class="feature">
+      <div>
+        <h3>SP-GiST Trie Index</h3>
+        <p>The index is built on PostgreSQL's SP-GiST framework, which supports space-partitioning strategies — a natural fit for trie structures. The trie branches on 2-bit nucleotide values, enabling prefix-based k-mer lookups with O(k) traversal rather than O(n) full scans.</p>
       </div>
+      <!-- ADD: screenshot of EXPLAIN ANALYZE showing index usage -->
+      <div class="imgph">screenshot: EXPLAIN ANALYZE with index scan</div>
+    </div>
 
-      <!-- The Problem -->
-      <section class="project-section">
-        <h2>The Problem</h2>
-        <p>
-          PostgreSQL has no native DNA sequence type. Storing sequences as plain
-          <code style="color: var(--accent-secondary); font-family: 'Fira Code', monospace;">TEXT</code>
-          wastes 4× the memory (one byte per nucleotide instead of 2 bits), and
-          k-mer substring queries require full-sequence scans with pattern matching.
-          For bioinformatics workloads with large sequence tables, this is both slow
-          and storage-heavy. The goal was to build a proper typed extension with
-          compact storage and an index structure suited to the query patterns
-          DNA data actually generates.
-        </p>
-      </section>
+    <div class="ascii">     [root]
+    /  |  \  \
+   A   C   G   T
+  /|   |    \
+AA AC  CA   GT
+...
 
-      <!-- What I Built -->
-      <section class="project-section">
-        <h2>What I Built</h2>
+Each path from root → leaf encodes a k-mer prefix.
+A query for sequences containing "ACG" traverses 3 levels
+rather than scanning every row.</div>
+  </section>
 
-        <div class="feature-block">
-          <div class="feature-text">
-            <h3>Bit-Packed DNA Type</h3>
-            <p>
-              Each nucleotide is encoded in 2 bits (A=00, C=01, G=10, T=11),
-              packing four bases per byte. The custom type implements PostgreSQL's
-              <code style="color: var(--accent-secondary); font-family: 'Fira Code', monospace;">varlena</code>
-              interface for variable-length storage, with input/output functions
-              that handle ASCII ↔ bit-packed conversion transparently.
-            </p>
-          </div>
-          <!-- ADD: screenshot or diagram showing storage layout -->
-          <div class="feature-img-placeholder">[ screenshot: \d+ output or storage diagram ]</div>
-        </div>
+  <section class="pd-section">
+    <h2>SP-GiST vs GiST — Why It Matters Here</h2>
+    <p>PostgreSQL offers both GiST (Generalized Search Tree) and SP-GiST (Space-Partitioned GiST) for custom index types. GiST is balanced and general — it works by choosing arbitrary pivot points and splitting data around them. SP-GiST is designed for structures where the space itself has a natural partition, like tries or k-d trees.</p>
+    <div class="callout">DNA sequences share common prefixes — that's precisely the structure a trie exploits. Using GiST here would force balancing across arbitrary pivot points that don't correspond to meaningful sequence boundaries. SP-GiST lets the trie branch naturally on nucleotide values, producing a tree where each traversal step eliminates 3/4 of the remaining candidates at each nucleotide position.</div>
+  </section>
 
-        <div class="feature-block">
-          <div class="feature-text">
-            <h3>SP-GiST Trie Index</h3>
-            <p>
-              The index is built on PostgreSQL's SP-GiST framework, which
-              supports space-partitioning strategies — a natural fit for trie
-              structures. The trie branches on 2-bit nucleotide values, enabling
-              prefix-based k-mer lookups with O(k) traversal rather than O(n)
-              full scans.
-            </p>
-          </div>
-          <!-- ADD: screenshot of EXPLAIN ANALYZE showing index usage -->
-          <div class="feature-img-placeholder">[ screenshot: EXPLAIN ANALYZE with index scan ]</div>
-        </div>
+  <section class="pd-section">
+    <h2>What I'd Do Differently</h2>
+    <p>The current implementation handles exact k-mer matching well, but bioinformatics queries often need approximate matching — sequences with up to <em>k</em> substitutions or insertions. Adding edit-distance operators with a bounded-search trie traversal would make the extension genuinely useful for alignment tasks. I'd also add GIN-based k-mer inverted indexes as an alternative for workloads that favor bulk containment queries over prefix lookups.</p>
+  </section>
 
-        <div class="code-trie">
-             [root]
-            /  |  \  \
-           A   C   G   T
-          /|   |    \
-        AA AC  CA   GT
-        ...
+  <div class="pd-links">
+    <a href="https://github.com/eliejoefarah/Dna_PostgreSQL_Extension" target="_blank" rel="noopener" class="btn primary">GitHub →</a>
+    <a href="index.html#projects" class="btn">← All projects</a>
+  </div>
+</main>
 
-        Each path from root → leaf encodes a k-mer prefix.
-        A query for sequences containing "ACG" traverses 3 levels
-        rather than scanning every row.</div>
-      </section>
+<footer class="site">
+  <div class="fin"><span>Elie-Joe Farah</span><span>Brussels, BE — © 2026</span></div>
+</footer>
 
-      <!-- Technical Depth -->
-      <section class="project-section">
-        <h2>SP-GiST vs GiST — Why It Matters Here</h2>
-        <p>
-          PostgreSQL offers both GiST (Generalized Search Tree) and SP-GiST
-          (Space-Partitioned GiST) for custom index types. GiST is balanced and
-          general — it works by choosing arbitrary pivot points and splitting data
-          around them. SP-GiST is designed for structures where the space itself
-          has a natural partition, like tries or k-d trees.
-        </p>
-        <div class="insight-block">
-          <p>
-            DNA sequences share common prefixes — that's precisely the structure a
-            trie exploits. Using GiST here would force balancing across arbitrary
-            pivot points that don't correspond to meaningful sequence boundaries.
-            SP-GiST lets the trie branch naturally on nucleotide values, producing
-            a tree where each traversal step eliminates 3/4 of the remaining
-            candidates at each nucleotide position.
-          </p>
-        </div>
-      </section>
-
-      <!-- What I'd Do Differently -->
-      <section class="project-section">
-        <h2>What I'd Do Differently</h2>
-        <p>
-          The current implementation handles exact k-mer matching well, but
-          bioinformatics queries often need approximate matching — sequences with
-          up to <em>k</em> substitutions or insertions. Adding edit-distance
-          operators with a bounded-search trie traversal would make the extension
-          genuinely useful for alignment tasks. I'd also add GIN-based k-mer
-          inverted indexes as an alternative for workloads that favor bulk
-          containment queries over prefix lookups.
-        </p>
-      </section>
-
-      <!-- Links -->
-      <div class="project-nav-links">
-        <a href="https://github.com/eliejoefarah/Dna_PostgreSQL_Extension" target="_blank" class="btn btn-primary">
-          <i class="fab fa-github"></i> &nbsp;GitHub
-        </a>
-        <a href="index.html#projects" class="btn btn-secondary">← All Projects</a>
-      </div>
-
-    </main>
-
-    <footer class="main-footer">
-      <p>Designed & Built by Elie-Joe Farah &bull; &copy; 2026</p>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+<script src="script.js"></script>
+</body>
 </html>

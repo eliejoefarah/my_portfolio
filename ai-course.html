@@ -1,184 +1,125 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Course Platform | Elie-Joe Farah</title>
-    <meta name="description" content="An educational platform using Generative AI to create personalized course content, deployed in a real classroom with Raspberry Pi sensor data for context-aware learning." />
-    <meta property="og:title" content="AI Course Platform | Elie-Joe Farah" />
-    <meta property="og:description" content="AI-powered educational platform deployed in a real classroom, with Raspberry Pi sensor data feeding context-aware content generation." />
-    <meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  </head>
+<head>
+<meta charset="UTF-8" />
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Course Platform | Elie-Joe Farah</title>
+<meta name="description" content="An educational platform using Generative AI to create personalized course content, deployed in a real classroom with Raspberry Pi sensor data for context-aware learning." />
+<meta property="og:title" content="AI Course Platform | Elie-Joe Farah" />
+<meta property="og:description" content="AI-powered educational platform deployed in a real classroom, with Raspberry Pi sensor data feeding context-aware content generation." />
+<meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-  <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<header class="site">
+  <div class="site-inner">
+    <a href="index.html" class="brand">EJF<b>.</b></a>
+    <div class="header-right">
+      <nav class="top">
+        <a href="index.html#about">about</a>
+        <a href="index.html#experience">experience</a>
+        <a href="index.html#projects">projects</a>
+        <a href="index.html#research">research</a>
+        <a href="index.html#contact">contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
+        <span class="glyph">◐</span><span class="txt">light</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="index.html" class="logo">EJF<span class="dot">.</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="index.html#education" class="nav-link">Education</a></li>
-          <li class="nav-item"><a href="index.html#experience" class="nav-link">Experience</a></li>
-          <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
-          <li class="nav-item"><a href="index.html#contact" class="nav-link nav-btn">Contact</a></li>
-        </ul>
+<main class="proj-page">
+  <a href="index.html#projects" class="proj-back">← Back to projects</a>
+
+  <div class="proj-hero">
+    <div class="plabel">P—04 · EdTech · Applied AI</div>
+    <h1>AI Course Platform</h1>
+    <p class="pitch">An educational platform that uses Generative AI to produce personalized course content and quizzes — deployed and tested in a real classroom, with environmental sensor data from a Raspberry Pi feeding context into the generation pipeline.</p>
+    <div class="stack"><span>React</span><span>Node.js</span><span>OpenAI API</span><span>Raspberry Pi</span><span>REST API</span></div>
+    <!-- ADD: screenshot of the main student-facing interface or quiz screen -->
+    <!-- <figure class="shot"><img src="screenshots/ai-course-ui.png" alt="AI Course Platform interface" /></figure>
+    <p class="shot-cap">The student interface — content and quiz questions are generated per-session based on course material and live classroom context.</p> -->
+  </div>
+
+  <section class="pd-section">
+    <h2>The Problem</h2>
+    <p>Generic educational content doesn't adapt to where students actually are — in comprehension, in attention, or in the physical environment. A lecture delivered in a hot, noisy room to distracted students is a different context than an engaged morning session. This project explored whether real-time environmental signals (temperature, noise level, CO₂) could be used alongside course material to produce content that was better matched to the actual classroom moment.</p>
+    <!-- FILL IN: adjust or replace with the actual problem framing from the course/professor brief -->
+  </section>
+
+  <section class="pd-section">
+    <h2>What I Built</h2>
+
+    <div class="feature">
+      <div>
+        <h3>Content Generation Pipeline</h3>
+        <p>Course materials are chunked and stored as embeddings. When a student requests content or a quiz, the system retrieves the most relevant chunks via semantic search, injects them into a prompt with current sensor context, and generates a response through the OpenAI API. This keeps responses grounded in actual course material rather than hallucinating general knowledge.</p>
       </div>
-    </nav>
+      <!-- ADD: screenshot of generated quiz or content card -->
+      <div class="imgph">screenshot: generated quiz or content card</div>
+    </div>
 
-    <main class="container project-page">
-
-      <a href="index.html#projects" class="back-link">
-        <i class="fas fa-arrow-left"></i> Back to Projects
-      </a>
-
-      <!-- Hero -->
-      <div class="project-hero-block">
-        <p class="project-label">AI / Full-Stack</p>
-        <h1>AI Course Platform</h1>
-        <p class="project-pitch">
-          An educational platform that uses Generative AI to produce personalized
-          course content and quizzes — deployed and tested in a real classroom, with
-          environmental sensor data from a Raspberry Pi feeding context into the
-          generation pipeline.
-        </p>
-        <div class="project-hero-tags">
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">OpenAI API</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag">REST API</span>
-        </div>
-        <!-- ADD: screenshot of the main student-facing interface or quiz screen -->
-        <!-- <img src="screenshots/ai-course-ui.png" alt="AI Course Platform interface" class="project-screenshot-main" /> -->
-        <!-- <p class="screenshot-caption">The student interface — content and quiz questions are generated per-session based on course material and live classroom context.</p> -->
+    <div class="feature">
+      <div>
+        <h3>Raspberry Pi Sensor Layer</h3>
+        <p>A Raspberry Pi reads environmental sensors (temperature, humidity, noise, CO₂) at regular intervals and transmits readings to the backend via a REST API. The backend stores time-series readings and exposes aggregated context to the generation pipeline.</p>
       </div>
+      <!-- ADD: photo of the physical Raspberry Pi setup in the classroom, if you have one -->
+      <div class="imgph">photo: Raspberry Pi sensor setup</div>
+    </div>
 
-      <!-- The Problem -->
-      <section class="project-section">
-        <h2>The Problem</h2>
-        <p>
-          Generic educational content doesn't adapt to where students actually are —
-          in comprehension, in attention, or in the physical environment. A lecture
-          delivered in a hot, noisy room to distracted students is a different
-          context than an engaged morning session. This project explored whether
-          real-time environmental signals (temperature, noise level, CO₂) could be
-          used alongside course material to produce content that was better matched
-          to the actual classroom moment.
-        </p>
-        <!-- FILL IN: adjust or replace with the actual problem framing from the course/professor brief -->
-      </section>
-
-      <!-- What I Built -->
-      <section class="project-section">
-        <h2>What I Built</h2>
-
-        <div class="feature-block">
-          <div class="feature-text">
-            <h3>Content Generation Pipeline</h3>
-            <p>
-              Course materials are chunked and stored as embeddings. When a student
-              requests content or a quiz, the system retrieves the most relevant
-              chunks via semantic search, injects them into a prompt with current
-              sensor context, and generates a response through the OpenAI API. This
-              keeps responses grounded in actual course material rather than
-              hallucinating general knowledge.
-            </p>
-          </div>
-          <!-- ADD: screenshot of generated quiz or content card -->
-          <div class="feature-img-placeholder">[ screenshot: generated quiz or content card ]</div>
-        </div>
-
-        <div class="feature-block">
-          <div class="feature-text">
-            <h3>Raspberry Pi Sensor Layer</h3>
-            <p>
-              A Raspberry Pi reads environmental sensors (temperature, humidity,
-              noise, CO₂) at regular intervals and transmits readings to the backend
-              via a REST API. The backend stores time-series readings and exposes
-              aggregated context to the generation pipeline.
-            </p>
-          </div>
-          <!-- ADD: photo of the physical Raspberry Pi setup in the classroom, if you have one -->
-          <div class="feature-img-placeholder">[ photo: Raspberry Pi sensor setup ]</div>
-        </div>
-
-        <div class="feature-block">
-          <div class="feature-text">
-            <h3>Real Classroom Deployment</h3>
-            <p>
-              The platform was deployed during an actual course session, not just
-              tested locally. Students interacted with it live, and interaction data
-              was collected alongside sensor readings for post-session analysis.
-            </p>
-          </div>
-          <!-- ADD: photo from the classroom deployment, or screenshot of the analytics/logging view -->
-          <div class="feature-img-placeholder">[ photo: classroom deployment ]</div>
-        </div>
-      </section>
-
-      <!-- Technical Depth -->
-      <section class="project-section">
-        <h2>One Interesting Decision</h2>
-        <!-- FILL IN: replace with the actual non-obvious decision from your implementation -->
-        <!-- Options to consider: chunking strategy for course PDFs, embedding model choice,
-             how sensor data was weighted in the prompt, how you handled hallucination,
-             how quiz difficulty was calibrated, etc. -->
-        <p>
-          The most consequential decision was how to chunk course material for
-          retrieval. Splitting by fixed token count breaks mid-concept, which causes
-          the retriever to return fragments that make sense in isolation but mislead
-          the generator. Instead, chunks follow structural boundaries — sections,
-          paragraphs, and definition blocks — so each chunk carries a complete idea.
-          This reduced incoherent quiz questions significantly in testing.
-        </p>
-        <div class="insight-block">
-          <p>
-            <!-- FILL IN: a specific observation from testing, e.g. accuracy difference, failure modes you noticed, etc. -->
-            Replace this with a concrete observation from your own testing — what changed when you got this right, or what broke when you didn't.
-          </p>
-        </div>
-      </section>
-
-      <!-- What I'd Do Differently -->
-      <section class="project-section">
-        <h2>What I'd Do Differently</h2>
-        <!-- FILL IN: your own reflection -->
-        <p>
-          The sensor-to-prompt integration was fairly direct — high CO₂ → "simplify
-          content," high noise → "use shorter sentences." A more principled approach
-          would build a small evaluation set and measure whether these heuristics
-          actually improved comprehension scores, rather than assuming they did.
-          I'd also separate the sensor ingestion service from the main API so sensor
-          failures don't affect content generation availability.
-        </p>
-      </section>
-
-      <!-- Links -->
-      <div class="project-nav-links">
-        <!-- Add GitHub link if repo becomes public -->
-        <!-- <a href="https://github.com/eliejoefarah/..." target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> &nbsp;GitHub</a> -->
-        <a href="index.html#projects" class="btn btn-secondary">← All Projects</a>
+    <div class="feature">
+      <div>
+        <h3>Real Classroom Deployment</h3>
+        <p>The platform was deployed during an actual course session, not just tested locally. Students interacted with it live, and interaction data was collected alongside sensor readings for post-session analysis.</p>
       </div>
+      <!-- ADD: photo from the classroom deployment, or screenshot of the analytics/logging view -->
+      <div class="imgph">photo: classroom deployment</div>
+    </div>
+  </section>
 
-    </main>
+  <section class="pd-section">
+    <h2>One Interesting Decision</h2>
+    <!-- FILL IN: replace with the actual non-obvious decision from your implementation -->
+    <!-- Options to consider: chunking strategy for course PDFs, embedding model choice,
+         how sensor data was weighted in the prompt, how you handled hallucination,
+         how quiz difficulty was calibrated, etc. -->
+    <p>The most consequential decision was how to chunk course material for retrieval. Splitting by fixed token count breaks mid-concept, which causes the retriever to return fragments that make sense in isolation but mislead the generator. Instead, chunks follow structural boundaries — sections, paragraphs, and definition blocks — so each chunk carries a complete idea. This reduced incoherent quiz questions significantly in testing.</p>
+    <div class="callout">
+      <!-- FILL IN: a specific observation from testing, e.g. accuracy difference, failure modes you noticed, etc. -->
+      Replace this with a concrete observation from your own testing — what changed when you got this right, or what broke when you didn't.
+    </div>
+  </section>
 
-    <footer class="main-footer">
-      <p>Designed & Built by Elie-Joe Farah &bull; &copy; 2026</p>
-    </footer>
+  <section class="pd-section">
+    <h2>What I'd Do Differently</h2>
+    <!-- FILL IN: your own reflection -->
+    <p>The sensor-to-prompt integration was fairly direct — high CO₂ → "simplify content," high noise → "use shorter sentences." A more principled approach would build a small evaluation set and measure whether these heuristics actually improved comprehension scores, rather than assuming they did. I'd also separate the sensor ingestion service from the main API so sensor failures don't affect content generation availability.</p>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <div class="pd-links">
+    <!-- Add GitHub link if repo becomes public -->
+    <!-- <a href="https://github.com/eliejoefarah/..." target="_blank" rel="noopener" class="btn primary">GitHub →</a> -->
+    <a href="index.html#projects" class="btn">← All projects</a>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="fin"><span>Elie-Joe Farah</span><span>Brussels, BE — © 2026</span></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>

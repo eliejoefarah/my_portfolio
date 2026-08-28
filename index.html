@@ -1,586 +1,270 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elie-Joe Farah | Software Engineer</title>
-    <meta name="description" content="Software Engineer building backends and data systems for complex, real-world problems. Projects in battery LCA modeling, AI platforms, and PostgreSQL internals." />
-    <meta property="og:title" content="Elie-Joe Farah | Software Engineer" />
-    <meta property="og:description" content="Software Engineer building backends and data systems for complex, real-world problems." />
-    <meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
-    <meta property="og:url" content="https://eliejoefarah.com" />
-    <meta property="og:type" content="website" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-  </head>
+<head>
+<meta charset="UTF-8" />
+<script>
+  (function () {
+    var saved = localStorage.getItem('theme');
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Elie-Joe Farah | Software Engineer</title>
+<meta name="description" content="Software engineer working on backends, database internals, and data systems, based in Brussels." />
+<meta property="og:title" content="Elie-Joe Farah | Software Engineer" />
+<meta property="og:description" content="Software engineer working on backends, database internals, and data systems, based in Brussels." />
+<meta property="og:image" content="https://eliejoefarah.com/og-preview.png" />
+<meta property="og:url" content="https://eliejoefarah.com" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-  <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<header class="site">
+  <div class="site-inner">
+    <span class="brand">EJF<b>.</b></span>
+    <div class="header-right">
+      <nav class="top">
+        <a href="#about">about</a>
+        <a href="#experience">experience</a>
+        <a href="#projects">projects</a>
+        <a href="#research">research</a>
+        <a href="#contact">contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
+        <span class="glyph">◐</span><span class="txt">light</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <nav class="navbar">
-      <div class="container nav-container">
-        <a href="#" class="logo">EJF<span class="dot">.</span></a>
-        <div class="menu-toggle" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="nav-menu">
-          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-          <li class="nav-item">
-            <a href="#education" class="nav-link">Education</a>
-          </li>
-          <li class="nav-item">
-            <a href="#experience" class="nav-link">Experience</a>
-          </li>
-          <li class="nav-item">
-            <a href="#projects" class="nav-link">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link nav-btn">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+<!-- HERO -->
+<section class="hero reveal">
+  <svg class="contours" viewBox="-260 -260 520 520" aria-hidden="true">
+    <defs>
+      <path id="ct" style="fill:none;stroke:var(--accent);stroke-width:1;opacity:var(--contour-opacity);" d="M 0,-160 C 72,-152 144,-96 152,-24 C 160,48 112,112 48,140 C -16,168 -88,152 -128,96 C -160,48 -156,-32 -120,-88 C -88,-136 -48,-158 0,-160 Z"/>
+    </defs>
+    <use href="#ct" transform="scale(0.30) rotate(4)"/>
+    <use href="#ct" transform="scale(0.46) rotate(-6)"/>
+    <use href="#ct" transform="scale(0.62) rotate(3)"/>
+    <use href="#ct" transform="scale(0.78) rotate(-4)"/>
+    <use href="#ct" transform="scale(0.94) rotate(5)"/>
+    <use href="#ct" transform="scale(1.10) rotate(-3)"/>
+    <use href="#ct" transform="scale(1.28) rotate(2)"/>
+  </svg>
 
-    <section id="home" class="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <p class="hero-greeting">Hello, I'm</p>
-          <h1 class="hero-title">Elie-Joe Farah</h1>
-          <h2 class="hero-subtitle">
-            Software Engineer focused on
-            <span class="highlight">Systems & Data Platforms</span>
-          </h2>
-          <p class="hero-description">
-            I build backends and data systems for problems that are messier than
-            a tutorial assumes — multi-tenant platforms, database extensions, AI
-            pipelines with real sensor data.
-          </p>
-          <div class="hero-buttons">
-            <div class="hero-buttons-row">
-              <a href="#projects" class="btn btn-primary">View Work</a>
-              <a href="#contact" class="btn btn-secondary">Contact Me</a>
-            </div>
-            <a href="cv.pdf" download class="btn btn-secondary cv-download-btn">Download CV</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="code-block-wrapper">
-            <pre
-              class="code-block"
-            ><code class="language-javascript"><span class="keyword">const</span> <span class="variable">developer</span> = {
-  <span class="property">name</span>: <span class="string">"Elie-Joe Farah"</span>,
-  <span class="property">role</span>: <span class="string">"Software Engineer"</span>,
-  <span class="property">focus</span>: [<span class="string">"Systems"</span>, <span class="string">"Data Platforms"</span>],
-  <span class="property">stack</span>: [
-    <span class="string">"Python"</span>, <span class="string">"Java"</span>,
-    <span class="string">"PostgreSQL"</span>, <span class="string">"FastAPI"</span>,
-    <span class="string">"React"</span>, <span class="string">"C"</span>
-  ],
-  <span class="property">location</span>: <span class="string">"Brussels, Belgium"</span>
-};</code></pre>
-          </div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="lead">Software Engineer — Brussels, BE</div>
+        <h1>Elie-Joe<br>Farah</h1>
+        <p class="desc">I build backends, databases, and data systems, and I'm moving into renewable energy research. Currently a Master's student in computer science at the Université Libre de Bruxelles.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View work</a>
+          <a class="btn" href="cv.pdf" download>Download CV</a>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <i class="fas fa-arrow-down"></i>
-      </div>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="container about-container">
-        <div class="section-header">
-          <h2 class="section-title">About Me</h2>
-          <div class="section-line"></div>
+      <figure class="portrait">
+        <div class="frame">
+          <img src="profile.JPG" alt="Elie-Joe Farah">
         </div>
-        <div class="about-grid">
-          <div class="about-image">
-            <div class="image-wrapper">
-              <img src="profile.JPG" alt="Elie-Joe Farah" class="profile-img" />
+        <figcaption>50.8503° N, 4.3517° E</figcaption>
+      </figure>
+    </div>
+
+    <dl class="spec">
+      <div class="cell"><dt>Role</dt><dd>Software Engineer</dd></div>
+      <div class="cell"><dt>Focus</dt><dd>Systems / Data</dd></div>
+      <div class="cell"><dt>Research</dt><dd>Renewable Energy</dd></div>
+      <div class="cell"><dt>Based</dt><dd>Brussels, BE</dd></div>
+      <div class="cell"><dt>Status</dt><dd class="status">Open to work</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <h2 class="sec">About</h2>
+    <div class="row">
+      <div class="eyebrow label"><span class="idx">01</span>About</div>
+      <div class="prose">
+        <p>I'm a software engineer working on backends, data modeling, and database systems, with a growing focus on renewable energy research. My BE is in Computer Engineering from the Lebanese American University (Dean's Honor List), and I'm now finishing a Master's in Computer Science &amp; Engineering at the Université Libre de Bruxelles.</p>
+        <p class="muted">So far I've worked across QA and testing, backend APIs, database internals, and analytical platforms — through three internships in Beirut and a set of personal projects. Outside work I read maps and walk them: cartography and hiking are how I spend most of my time away from a screen.</p>
+        <div class="skillset">
+          <div>
+            <h3>Software</h3>
+            <div class="chips">
+              <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C++</span>
+              <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
+              <span class="chip">Machine Learning</span>
             </div>
           </div>
-          <div class="about-text">
-            <p class="about-lead">
-              I am a software engineer interested in building reliable systems
-              and data-driven platforms.
-            </p>
-
-            <p>
-              I am currently pursuing a Master in Civil Engineering in Computer
-              Science at Université Libre de Bruxelles, after completing a BE in
-              Computer Engineering at the Lebanese American University. My work
-              focuses on backend development, data modeling, and systems that
-              transform complex information into structured, usable software.
-            </p>
-
-            <p>
-              Through internships and personal projects, I have worked across
-              testing, backend APIs, database systems, and analytical platforms.
-              I enjoy designing architectures that combine clean abstractions,
-              efficient data handling, and practical usability.
-            </p>
-            <div class="tech-stack-container">
-              <div class="tech-category">
-                <h3>Software Development</h3>
-                <div class="tags">
-                  <span class="tag">Java</span>
-                  <span class="tag">Python</span>
-                  <span class="tag">JavaScript</span>
-                  <span class="tag">C++</span>
-                  <span class="tag">React</span>
-                  <span class="tag">Node.js</span>
-                  <span class="tag">PostgreSQL</span>
-                  <span class="tag">Machine Learning</span>
-                </div>
-              </div>
-              <div class="tech-category">
-                <h3>Hardware & Systems</h3>
-                <div class="tags">
-                  <span class="tag">System Design</span>
-                  <span class="tag">VHDL</span>
-                  <span class="tag">Verilog</span>
-                  <span class="tag">FPGA</span>
-                  <span class="tag">Assembly</span>
-                </div>
-              </div>
+          <div>
+            <h3>Hardware &amp; Systems</h3>
+            <div class="chips">
+              <span class="chip">System Design</span><span class="chip">VHDL</span>
+              <span class="chip">Verilog</span><span class="chip">FPGA</span><span class="chip">Assembly</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="education" class="section education">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Education</h2>
-          <div class="section-line"></div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <h2 class="sec">Experience</h2>
+    <div class="row">
+      <div class="eyebrow label"><span class="idx">02</span>Experience</div>
+      <div>
+        <div class="xp">
+          <div class="when">Jun 2025 — Jul 2025</div>
+          <h4>QA Intern</h4>
+          <div class="co">FOO · Beirut</div>
+          <ul>
+            <li>Ran 2,500+ mobile and web test cases and caught regressions before they reached production.</li>
+            <li>Filed 25+ critical bugs in Jira, improving coverage and workflow clarity.</li>
+          </ul>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2025 - Present</div>
-            <div class="timeline-content">
-              <h3>Master in Computer Science & Engineering</h3>
-              <h4>Université Libre de Bruxelles, Belgium</h4>
-              <p>Specialization in Civil Engineering in Computer Science.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2021 - 2025</div>
-            <div class="timeline-content">
-              <h3>BE in Computer Engineering</h3>
-              <h4>Lebanese American University, Lebanon</h4>
-              <p>Dean's Honor List.</p>
-              <!-- <p>Relevant Coursework: Image Processing, Information & Coding Theory.</p> -->
-            </div>
+        <div class="xp">
+          <div class="when">Jun 2024 — Aug 2024</div>
+          <h4>Software Dev &amp; QA Intern</h4>
+          <div class="co">ITG · ITB · Beirut</div>
+          <ul>
+            <li>Built a PHP/Laravel backend demo with a REST API and authentication.</li>
+            <li>Did data-driven testing and found 20+ major issues.</li>
+          </ul>
+        </div>
+        <div class="xp">
+          <div class="when">Jun 2023 — Aug 2023</div>
+          <h4>Hospital Info System Intern</h4>
+          <div class="co">Hôtel-Dieu de France · Beirut</div>
+          <ul>
+            <li>Wrote SAP/Oracle SQL reports for clinical analytics and optimized the queries behind them.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <h2 class="sec">Projects</h2>
+    <div class="row" style="margin-bottom:30px;">
+      <div class="eyebrow label"><span class="idx">03</span>Selected Work</div><div></div>
+    </div>
+
+    <div class="proj">
+      <div><div class="pno">P—01</div><div class="ptype">Full-stack · Energy</div></div>
+      <div>
+        <h4>BatteryLCATool</h4>
+        <p>A multi-tenant platform for battery life-cycle inventory modeling. Manufacturers enter process inventories by hand or via Excel import; admins map flows to the ecoinvent database and export VUB-format workbooks. It includes a Monte Carlo engine with parameterized uncertainty distributions and Spearman correlation sensitivity analysis.</p>
+        <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>React</span><span>TypeScript</span><span>NumPy/SciPy</span></div>
+        <a class="plink" href="battery-lca.html">View project →</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div><div class="pno">P—02</div><div class="ptype">Database internals · C</div></div>
+      <div>
+        <h4>PostgreSQL DNA Extension</h4>
+        <p>A PostgreSQL extension in C that adds native DNA sequence types with bit-packed storage (2 bits per nucleotide) and k-mer substring indexing through an SP-GiST trie. You get typed DNA columns, alignment queries, and index-accelerated k-mer lookups directly in SQL.</p>
+        <div class="stack"><span>C</span><span>PostgreSQL</span><span>Database Internals</span></div>
+        <a class="plink" href="https://github.com/eliejoefarah/Dna_PostgreSQL_Extension" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div><div class="pno">P—03</div><div class="ptype">Compiler · Java</div></div>
+      <div>
+        <h4>yaLcc Compiler</h4>
+        <p>A compiler for a C-like language, built from scratch in Java. Lexical analysis with JFlex feeds a recursive descent parser, a symbol table with type checking, and IR code generation. Handles functions, control flow, arrays, and structs.</p>
+        <div class="stack"><span>Java</span><span>Compiler Design</span><span>JFlex</span></div>
+        <a class="plink" href="https://github.com/eliejoefarah/CompilerProjectULB" target="_blank" rel="noopener">View source →</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div><div class="pno">P—04</div><div class="ptype">EdTech · Applied AI</div></div>
+      <div>
+        <h4>AI Course Platform</h4>
+        <p>An educational platform using generative AI to create personalized course content and quizzes. Deployed and tested in a real classroom, where environmental and interaction data were collected through sensors on a Raspberry Pi and sent over a REST API, enabling context-aware learning experiences.</p>
+        <div class="stack"><span>React</span><span>Node.js</span><span>OpenAI API</span><span>Raspberry Pi</span><span>REST API</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH / PUBLICATIONS -->
+<section id="research">
+  <div class="wrap">
+    <h2 class="sec">Research</h2>
+    <div class="row">
+      <div class="eyebrow label"><span class="idx">04</span>Research</div>
+      <div>
+        <p class="pubintro">I'm beginning research in renewable energy systems. Publications and preprints will be listed here as they appear — the entry below shows the format.</p>
+        <div class="pub">
+          <div class="py">2026 · In preparation</div>
+          <div class="pt">[Working title — a paper on renewable energy systems]</div>
+          <div class="pm">E-J. Farah, co-authors. Target venue / journal.</div>
+          <div class="foot">
+            <span class="tag">Preprint</span>
+            <a class="plink" href="#">PDF →</a>
+            <a class="plink" href="#">DOI →</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="experience" class="section experience">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Experience</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Jun '25 - Jul '25</div>
-            <div class="timeline-content">
-              <h3>QA Intern</h3>
-              <h4>FOO, Beirut</h4>
-              <ul>
-                <li>
-                  Executed 2,500+ mobile/web test cases, contributing to early
-                  detection of regressions in production-facing applications.
-                </li>
-                <li>
-                  Reported 25+ critical bugs via Jira, improving workflow
-                  clarity and test coverage.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Jun '24 - Aug '24</div>
-            <div class="timeline-content">
-              <h3>Software Dev & QA Intern</h3>
-              <h4>ITG - ITB, Beirut</h4>
-              <ul>
-                <li>
-                  Built a PHP Laravel backend demo with REST-style API
-                  structuring and authentication workflows.
-                </li>
-                <li>
-                  Performed data-driven testing, identifying 20+ major issues
-                  and improving system stability.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Jun '23 - Aug '23</div>
-            <div class="timeline-content">
-              <h3>Hospital Info System Intern</h3>
-              <h4>Hotel Dieu De France, Beirut</h4>
-              <ul>
-                <li>
-                  Developed SAP/Oracle SQL reports for clinical analytics and
-                  optimized queries to improve reporting performance.
-                </li>
-              </ul>
-            </div>
-          </div>
+<!-- LEBANON PHOTO BAND -->
+<section class="band">
+  <div class="head">
+    <span class="idx">05</span>
+    <span class="t">Lebanon</span>
+    <span class="coord">33.85° N, 35.86° E</span>
+  </div>
+  <div class="strip">
+    <figure><div class="ph"><img src="trips/IMG_3049.JPEG" alt="Hiking in Lebanon" loading="lazy"></div><figcaption>On foot · Mount Lebanon</figcaption></figure>
+    <figure><div class="ph"><img src="trips/IMG_4390.JPEG" alt="Hiking in Lebanon" loading="lazy"></div><figcaption>On foot · Mount Lebanon</figcaption></figure>
+    <figure><div class="ph"><img src="trips/IMG_6140.JPEG" alt="Hiking in Lebanon" loading="lazy"></div><figcaption>On foot · Mount Lebanon</figcaption></figure>
+    <figure><div class="ph"><img src="trips/IMG_6177.JPEG" alt="Hiking in Lebanon" loading="lazy"></div><figcaption>On foot · Mount Lebanon</figcaption></figure>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2 class="sec">Contact</h2>
+    <div class="row">
+      <div class="eyebrow label"><span class="idx">06</span>Contact</div>
+      <div>
+        <span class="big">Get in touch</span>
+        <p>I'm looking for new opportunities. Email is the best way to reach me.</p>
+        <div class="links">
+          <a href="mailto:eliejoefarah@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/elie-joe-farah-7b1586230/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/eliejoefarah" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="projects" class="section projects">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Featured Projects</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="projects-grid">
-          <!-- Project: BatteryLCATool -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <!-- <a href="#" target="_blank" aria-label="GitHub Link"><i class="fab fa-github"></i></a> -->
-                  <!-- <a href="#" target="_blank" aria-label="External Link"><i class="fas fa-external-link-alt"></i></a> -->
-                </div>
-              </div>
-              <h3 class="project-title">BatteryLCATool</h3>
-              <p class="project-description">
-                Full-stack multi-tenant platform for battery life-cycle
-                inventory modeling. Manufacturers model process inventories
-                manually or via Excel import; admins map flows to the ecoinvent
-                background database and export structured VUB-format workbooks
-                to Supabase Storage. Includes a Monte Carlo simulation engine
-                with parameterized uncertainty distributions and Spearman
-                correlation sensitivity analysis.
-              </p>
-              <ul class="project-tech-list">
-                <li>FastAPI</li>
-                <li>PostgreSQL</li>
-                <li>Supabase</li>
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>NumPy / SciPy</li>
-              </ul>
-              <a href="battery-lca.html" class="project-view-link">View Project →</a>
-            </div>
-          </article>
-          <!-- Project 4 -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <!-- <a href="#" aria-label="GitHub Link"><i class="fab fa-github"></i></a> -->
-                </div>
-              </div>
-              <h3 class="project-title">AI Course Platform</h3>
-              <p class="project-description">
-                An educational platform leveraging Generative AI to create
-                personalized course content and quizzes for students. The system
-                was deployed and tested in a real-world classroom, where
-                environmental and interaction data were collected through
-                multiple sensors connected to a Raspberry Pi and transmitted via
-                a REST API for processing and analysis, enabling context-aware
-                learning experiences.
-              </p>
-              <ul class="project-tech-list">
-                <li>React</li>
-                <li>Node.js</li>
-                <li>OpenAI API</li>
-                <li>Raspberry Pi</li>
-                <li>REST API</li>
-              </ul>
-              <!-- <a href="ai-course.html" class="project-view-link">View Project →</a> -->
-            </div>
-          </article>
-          <!-- Project 1 -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <a
-                    href="https://github.com/eliejoefarah/Dna_PostgreSQL_Extension"
-                    target="_blank"
-                    aria-label="GitHub Link"
-                    ><i class="fab fa-github"></i
-                  ></a>
-                  <!-- <a href="#" aria-label="External Link"><i class="fas fa-external-link-alt"></i></a> -->
-                </div>
-              </div>
-              <h3 class="project-title">PostgreSQL DNA Extension</h3>
-              <p class="project-description">
-                A PostgreSQL extension in C that adds native DNA sequence types
-                with bit-packed storage (2 bits per nucleotide) and k-mer
-                substring indexing via a SP-GiST trie. Enables typed DNA
-                columns, sequence alignment queries, and index-accelerated k-mer
-                lookups directly in SQL.
-              </p>
-              <ul class="project-tech-list">
-                <li>C</li>
-                <li>PostgreSQL</li>
-                <li>Database Internals</li>
-              </ul>
-              <!-- <a href="dna-extension.html" class="project-view-link">View Project →</a> -->
-            </div>
-          </article>
-          <!-- Project 5 -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <a
-                    href="https://github.com/eliejoefarah/map_project"
-                    aria-label="GitHub Link"
-                    ><i class="fab fa-github"></i
-                  ></a>
-                </div>
-              </div>
-              <h3 class="project-title">Mobility Analytics Dashboard</h3>
-              <p class="project-description">
-                Interactive analytics dashboard for exploring and interpreting
-                urban mobility patterns through geospatial data. Features
-                dynamic map-based visualizations, including heatmaps, route
-                distributions, and temporal trend analysis, to support
-                data-driven insights and spatial decision-making.
-              </p>
+<footer class="site">
+  <div class="fin"><span>Elie-Joe Farah</span><span>Brussels, BE — © 2026</span></div>
+</footer>
 
-              <ul class="project-tech-list">
-                <li>Python</li>
-                <li>Pandas</li>
-                <li>Data Visualization</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Project 2 -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <a
-                    href="https://github.com/eliejoefarah/CompilerProjectULB"
-                    target="_blank"
-                    aria-label="GitHub Link"
-                    ><i class="fab fa-github"></i
-                  ></a>
-                </div>
-              </div>
-              <h3 class="project-title">yaLcc Compiler</h3>
-              <p class="project-description">
-                A compiler for a C-like language, built from scratch in Java.
-                Implements lexical analysis with JFlex, a recursive descent
-                parser, symbol table and type checking, and IR code generation.
-                Handles functions, control flow, arrays, and structs.
-              </p>
-              <ul class="project-tech-list">
-                <li>Java</li>
-                <li>Compiler Design</li>
-                <li>JFlex</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="project-card">
-            <div class="project-content">
-              <div class="project-top">
-                <div class="folder-icon">
-                  <i class="far fa-folder"></i>
-                </div>
-                <div class="project-links">
-                  <!-- <a href="#" aria-label="GitHub Link"><i class="fab fa-github"></i></a> -->
-                </div>
-              </div>
-              <h3 class="project-title">P2P Energy Trading Platform</h3>
-              <p class="project-description">
-                Simulation of a peer-to-peer energy market for smart grids,
-                where prosumers trade surplus solar energy via smart contracts on
-                Ethereum. Implements a clearing algorithm that matches bids and
-                asks at a local market price, reducing grid export costs compared
-                to a centralized utility model.
-              </p>
-              <ul class="project-tech-list">
-                <li>Solidity</li>
-                <li>Optimization</li>
-                <li>Distributed Systems</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="hobbies" class="section hobbies">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Life Beyond Code</h2>
-          <div class="section-line"></div>
-        </div>
-
-        <p class="section-description">
-          When I'm not building systems, I'm out exploring Lebanon on foot.
-        </p>
-
-        <div class="hobbies-grid">
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_3049.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Exploration</span> -->
-            </div>
-          </div>
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_3114.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Leadership</span> -->
-            </div>
-          </div>
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_4390.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Adventure</span> -->
-            </div>
-          </div>
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_6140.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Nature</span> -->
-            </div>
-          </div>
-          <!-- <div class="hobby-item">
-                    <img src="trips/IMG_6168.JPEG" alt="Hiking Trip in Lebanon" loading="lazy">
-                    <div class="hobby-overlay"> -->
-          <!-- <span>Discovery</span> -->
-          <!-- </div>
-                </div> -->
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_6171.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Teamwork</span> -->
-            </div>
-          </div>
-          <div class="hobby-item">
-            <img
-              src="trips/IMG_6177.JPEG"
-              alt="Hiking Trip in Lebanon"
-              loading="lazy"
-            />
-            <div class="hobby-overlay">
-              <!-- <span>Perspective</span> -->
-            </div>
-          </div>
-          <!-- <div class="hobby-item">
-                    <img src="trips/IMG_8647.JPEG" alt="Hiking Trip in Lebanon" loading="lazy">
-                    <div class="hobby-overlay"> -->
-          <!-- <span>Resilience</span> -->
-          <!-- </div>
-                </div> -->
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="container contact-container">
-        <div class="contact-content">
-          <h2 class="contact-title">Let's Build Together</h2>
-          <p class="contact-text">
-            I'm currently looking for new opportunities. Whether you have a
-            question or just want to say hi, my inbox is always open.
-          </p>
-          <div class="contact-cta">
-            <a
-              href="mailto:eliejoefarah@gmail.com"
-              class="btn btn-primary big-btn"
-              >Say Hello</a
-            >
-          </div>
-          <div class="social-links-footer">
-            <a
-              href="https://www.linkedin.com/in/elie-joe-farah-7b1586230/"
-              target="_blank"
-              class="social-link"
-              ><i class="fab fa-linkedin-in"></i
-            ></a>
-            <a
-              href="https://github.com/eliejoefarah"
-              target="_blank"
-              class="social-link"
-              ><i class="fab fa-github"></i
-            ></a>
-            <a href="mailto:eliejoefarah@gmail.com" class="social-link"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
-          <div class="footer-info">
-            <p>Brussels, Belgium</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="main-footer">
-      <p>Designed & Built by Elie-Joe Farah &bull; &copy; 2026</p>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+<script src="script.js"></script>
+</body>
 </html>
