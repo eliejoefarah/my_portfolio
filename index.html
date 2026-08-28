@@ -213,15 +213,15 @@
     <div class="row">
       <div class="eyebrow label"><span class="idx">04</span>Research</div>
       <div>
-        <p class="pubintro">I'm beginning research in renewable energy systems. Publications and preprints will be listed here as they appear — the entry below shows the format.</p>
+        <p class="pubintro">I'm beginning research in renewable energy systems. Publications and preprints will be listed here as they appear.</p>
         <div class="pub">
-          <div class="py">2026 · In preparation</div>
-          <div class="pt">[Working title — a paper on renewable energy systems]</div>
-          <div class="pm">E-J. Farah, co-authors. Target venue / journal.</div>
+          <div class="py">2026 · Submitted</div>
+          <div class="pt">REWIND: European Wind Fleet LCA</div>
+          <div class="pm">E-J. Farah, co-authors. International Journal of Life Cycle Assessment.</div>
+          <div class="desc">A co-authored study introducing REWIND, a life-cycle assessment model that estimates the environmental impact of every wind turbine installed in Europe (77,552 of them) from each turbine's own size and location rather than country-level averages. Rebuilt the model's impact engine on the lca_algebraic library, which the earlier model didn't use: instead of re-solving a large matrix for every single turbine, impacts are written as formulas that each turbine's parameters plug straight into, cutting evaluation to a fraction of a second per turbine and turning a previously impractical computation into a workable fleet-wide run. Also handled data curation and the geospatial pipeline: assembling the turbine register, deriving grid-connection cable lengths from OpenStreetMap substation data, and estimating per-turbine electricity output from wind-atlas measurements.</div>
+          <div class="stack"><span>Python</span><span>lca_algebraic</span><span>OpenStreetMap</span><span>NumPy / Pandas</span><span>Life Cycle Assessment</span></div>
           <div class="foot">
-            <span class="tag">Preprint</span>
-            <a class="plink" href="#">PDF →</a>
-            <a class="plink" href="#">DOI →</a>
+            <span class="tag">Submitted</span>
           </div>
         </div>
       </div>
