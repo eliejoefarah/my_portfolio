@@ -306,7 +306,7 @@ h2.sec {
 .band .strip .ph { aspect-ratio: 4/3; background: var(--photo-bg); overflow: hidden; border: 1px solid var(--rule); }
 .band .strip .ph img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(6%); transition: transform .5s ease; }
 .band .strip figure:hover .ph img { transform: scale(1.04); }
-.band .strip figcaption { font-family: var(--mono); font-size: 10px; color: var(--ink-3); letter-spacing: .05em; margin-top: 6px; }
+.band .strip figcaption { display: none; }
 
 /* ---------- Contact ---------- */
 .contact .big {
