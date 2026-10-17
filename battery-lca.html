@@ -49,7 +49,7 @@
     <div class="plabel">P—01 · Full-stack · Energy</div>
     <h1>BatteryLCATool</h1>
     <p class="pitch">A multi-tenant research platform for battery life-cycle inventory modeling, replacing shared spreadsheets with structured data, role-based access, and built-in statistical simulation.</p>
-    <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>React</span><span>TypeScript</span><span>NumPy/SciPy</span></div>
+    <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>React</span><span>TypeScript</span><span>NumPy/SciPy</span><span>Docker</span></div>
     <figure class="shot">
       <img src="screenshots/lca-admin-dashboard.png" alt="BatteryLCATool admin dashboard" />
     </figure>
@@ -87,6 +87,13 @@
         <p>Each process in a revision has a full exchange table — flow name, quantity, formula, unit, direction, source database, geographic origin, and cost. Quantities can reference named parameters via formula strings, enabling parameterized models where changing one value propagates across all linked exchanges.</p>
       </div>
       <img src="screenshots/lca-exchange-table.png" alt="Inventory exchange table with formula references and source database" />
+    </div>
+
+    <div class="feature" style="grid-template-columns:1fr;">
+      <div>
+        <h3>Validation &amp; Deployment</h3>
+        <p>An async FastAPI pipeline parses three Excel formats, persists process and exchange data atomically, and runs a parametric validation engine that tracks issues per exchange. Access is enforced with Supabase Auth and PostgreSQL Row-Level Security. The platform runs in production on Supabase Cloud, Railway (containerized FastAPI) and Vercel with GitHub Actions CI, and is being migrated to a self-hosted VUB VM with Docker Compose, self-hosted Supabase and a TLS reverse proxy.</p>
+      </div>
     </div>
   </section>
 

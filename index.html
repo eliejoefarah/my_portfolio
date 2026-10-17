@@ -170,14 +170,23 @@
       <div><div class="pno">P—01</div><div class="ptype">Full-stack · Energy</div></div>
       <div>
         <h4>BatteryLCATool</h4>
-        <p>A multi-tenant platform for battery life-cycle inventory modeling. Manufacturers enter process inventories by hand or via Excel import; admins map flows to the ecoinvent database and export VUB-format workbooks. It includes a Monte Carlo engine with parameterized uncertainty distributions and Spearman correlation sensitivity analysis.</p>
-        <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>React</span><span>TypeScript</span><span>NumPy/SciPy</span></div>
+        <p>A multi-tenant platform for battery life-cycle inventory modeling. Manufacturers enter process inventories by hand or import them from three Excel formats, with revision control and role-based access enforced by Supabase Auth and PostgreSQL Row-Level Security. An async FastAPI pipeline persists processes and exchanges atomically and runs a parametric validation engine that tracks issues per exchange; admins map flows to the ecoinvent database with trigram search and export VUB-format workbooks. It includes a Monte Carlo engine with parameterized uncertainty distributions and Spearman correlation sensitivity analysis. Runs in production on Supabase Cloud, Railway and Vercel with GitHub Actions CI, and is being migrated to a self-hosted VUB VM (Docker Compose, self-hosted Supabase, TLS reverse proxy).</p>
+        <div class="stack"><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>React</span><span>TypeScript</span><span>NumPy/SciPy</span><span>Docker</span></div>
         <a class="plink" href="battery-lca.html">View project →</a>
       </div>
     </div>
 
     <div class="proj">
-      <div><div class="pno">P—02</div><div class="ptype">Database internals · C</div></div>
+      <div><div class="pno">P—02</div><div class="ptype">Machine learning · Forecasting</div></div>
+      <div>
+        <h4>Multi-Step Forecasting of Nonlinear Systems (NARX)</h4>
+        <p>A system identification pipeline for a two-output nonlinear (NARX) system. A wrapper-based grid search with time-series cross-validation selects the lag structure, checked against simulated systems with known dynamics. Recursive, Direct, DirRec and DIRMO multi-step strategies are compared against tuned Gradient Boosting and Ridge baselines in a scikit-learn pipeline with custom scaling and predictor steps that avoid data leakage. The final model is a PyTorch MLP ensemble that forecasts both outputs together with the recursive strategy, trained with AdamW, cosine annealing and Gaussian input-noise injection to limit error build-up.</p>
+        <div class="stack"><span>Python</span><span>PyTorch</span><span>scikit-learn</span><span>Time Series</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div><div class="pno">P—03</div><div class="ptype">Database internals · C</div></div>
       <div>
         <h4>PostgreSQL DNA Extension</h4>
         <p>A PostgreSQL extension in C that adds native DNA sequence types with bit-packed storage (2 bits per nucleotide) and k-mer substring indexing through an SP-GiST trie. You get typed DNA columns, alignment queries, and index-accelerated k-mer lookups directly in SQL.</p>
@@ -187,7 +196,7 @@
     </div>
 
     <div class="proj">
-      <div><div class="pno">P—03</div><div class="ptype">Compiler · Java</div></div>
+      <div><div class="pno">P—04</div><div class="ptype">Compiler · Java</div></div>
       <div>
         <h4>yaLcc Compiler</h4>
         <p>A compiler for a C-like language, built from scratch in Java. Lexical analysis with JFlex feeds a recursive descent parser, a symbol table with type checking, and IR code generation. Handles functions, control flow, arrays, and structs.</p>
@@ -197,7 +206,7 @@
     </div>
 
     <div class="proj">
-      <div><div class="pno">P—04</div><div class="ptype">EdTech · Applied AI</div></div>
+      <div><div class="pno">P—05</div><div class="ptype">EdTech · Applied AI</div></div>
       <div>
         <h4>AI Course Platform</h4>
         <p>An educational platform using generative AI to create personalized course content and quizzes. Deployed and tested in a real classroom, where environmental and interaction data were collected through sensors on a Raspberry Pi and sent over a REST API, enabling context-aware learning experiences.</p>
@@ -215,6 +224,16 @@
       <div class="eyebrow label"><span class="idx">04</span>Research</div>
       <div>
         <!-- <p class="pubintro">I'm beginning research in renewable energy systems. Publications and preprints will be listed here as they appear.</p> -->
+        <div class="pub">
+          <div class="py">2025 — present · Master's thesis, ULB</div>
+          <div class="pt">Price Signals for Shifting the Electricity Demand of Electrified Belgian Dwellings</div>
+          <div class="pm">E-J. Farah. Université Libre de Bruxelles.</div>
+          <div class="desc">Designing a price-signal algorithm that steers heat pumps, water heaters and EV chargers in 500 simulated Belgian dwellings toward periods of high renewable output, while accounting for forecast uncertainty. Built the experiment harness and an emissions pipeline that combines ENTSO-E generation-mix data with sourced emission factors to measure grid carbon intensity across the dwelling fleet.</div>
+          <div class="stack"><span>Python</span><span>ENTSO-E</span><span>Demand Response</span><span>Simulation</span><span>Energy Systems</span></div>
+          <div class="foot">
+            <span class="tag">In progress</span>
+          </div>
+        </div>
         <div class="pub">
           <div class="py">2026 · Submitted</div>
           <div class="pt">REWIND: European Wind Fleet LCA</div>
