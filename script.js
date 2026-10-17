@@ -73,3 +73,41 @@
     if (!ticking) { ticking = true; requestAnimationFrame(checkBottom); }
   }, { passive: true });
 })();
+
+// Mobile nav: the burger slides the nav out as a side drawer.
+(function () {
+  var burger = document.getElementById('nav-burger');
+  var nav = document.getElementById('site-nav');
+  var header = document.querySelector('header.site');
+  if (!burger || !nav || !header) return;
+
+  var scrim = document.createElement('div');
+  scrim.className = 'nav-scrim';
+  header.appendChild(scrim);
+
+  var root = document.documentElement;
+  var mobile = window.matchMedia('(max-width: 979px)');
+
+  function setOpen(open) {
+    root.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  burger.addEventListener('click', function () {
+    setOpen(!root.classList.contains('nav-open'));
+  });
+  scrim.addEventListener('click', function () { setOpen(false); });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && root.classList.contains('nav-open')) {
+      setOpen(false);
+      burger.focus();
+    }
+  });
+  // Growing past the breakpoint with the drawer open would leave the page scroll-locked.
+  mobile.addEventListener('change', function (e) { if (!e.matches) setOpen(false); });
+})();
