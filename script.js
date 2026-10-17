@@ -57,10 +57,9 @@
 
   sections.forEach(function (s) { observer.observe(s); });
 
-  // #contact dropped its own forced full-viewport height so it shares one scroll
-  // stop with the footer — it's often too short to ever cross the observer's
-  // center band, so the last nav link never gets marked active at the bottom
-  // of the page without this explicit check.
+  // #contact is often too short to ever cross the observer's center band, so the
+  // last nav link never gets marked active at the bottom of the page without
+  // this explicit check.
   var lastSection = sections[sections.length - 1];
   var ticking = false;
   function checkBottom() {

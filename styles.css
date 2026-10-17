@@ -48,9 +48,8 @@
 html {
   scroll-behavior: smooth;
   scrollbar-color: var(--accent) var(--paper); scrollbar-width: thin;
-  /* Snap container: scroll-padding-top offsets both fragment-link jumps and
-     snap stops by the sticky header's height so section tops aren't hidden under it. */
-  scroll-snap-type: y proximity; scroll-padding-top: var(--header-h);
+  /* Offsets fragment-link jumps by the sticky header's height so section tops aren't hidden under it. */
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -135,6 +134,7 @@ nav.top a {
 }
 nav.top a:hover,
 nav.top a.active { color: var(--accent); }
+@media (max-width: 860px) { nav.top { gap: 16px; } .header-right { gap: 16px; } }
 @media (max-width: 680px) { nav.top { display: none; } }
 
 .theme-toggle {
@@ -156,10 +156,6 @@ nav.top a.active { color: var(--accent); }
 
 /* ---------- Sections / grid ---------- */
 section { padding: 88px 0; border-top: 1px solid var(--rule); }
-/* Scoped to body>section (the homepage's top-level sections) rather than plain
-   `section`, so it doesn't also force full-viewport height on the project detail
-   pages' nested <section class="pd-section"> content blocks. */
-body > section { min-height: 100vh; scroll-snap-align: start; }
 .row { display: grid; grid-template-columns: var(--gutter) 1fr; gap: 40px; }
 .eyebrow { padding-top: 6px; }
 .eyebrow .idx { display: block; color: var(--accent); margin-bottom: 6px; }
@@ -293,7 +289,7 @@ h2.sec {
 .pub .plink { font-family: var(--mono); font-size: 12.5px; color: var(--accent); border-bottom: 1px solid transparent; }
 .pub .plink:hover { border-color: var(--accent); }
 
-/* ---------- Lebanon photo band ---------- */
+/* ---------- Exploring photo band ---------- */
 .band { border-top: 1px solid var(--rule); padding: 70px 0 78px; }
 .band .head {
   max-width: var(--maxw); margin: 0 auto 26px; padding: 0 32px;
@@ -322,16 +318,8 @@ h2.sec {
 .contact .links a { font-family: var(--mono); font-size: 13px; color: var(--ink); border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
 .contact .links a:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Contact drops its own full-viewport snap stop so it settles together with the
-   footer as one shared "focus area" (see footer's scroll-snap-align:end below)
-   instead of two separate stops. */
-#contact { min-height: auto; scroll-snap-align: none; }
-
 /* ---------- Footer ---------- */
-/* scroll-snap-align:end gives the footer+contact pair their shared snap point —
-   without it, proximity snapping pulls the resting scroll back up to #research's
-   start and the footer becomes unreachable by a normal end-of-page scroll. */
-footer.site { border-top: 1px solid var(--rule); padding: 26px 0; scroll-snap-align: end; }
+footer.site { border-top: 1px solid var(--rule); padding: 26px 0; }
 footer .fin {
   max-width: var(--maxw); margin: 0 auto; padding: 0 32px;
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
@@ -409,11 +397,5 @@ footer .fin span { font-family: var(--mono); font-size: 11.5px; color: var(--ink
 @media (prefers-reduced-motion: reduce) {
   .band .strip .ph img { transition: none; }
   body { transition: none; }
-  html { scroll-snap-type: none; scroll-behavior: auto; }
-}
-
-/* Normal mobile scroll — no paged/snap feel below tablet width. */
-@media (max-width: 768px) {
-  html { scroll-snap-type: none; }
-  body > section { min-height: auto; scroll-snap-align: none; }
+  html { scroll-behavior: auto; }
 }
