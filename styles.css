@@ -177,7 +177,7 @@ nav.top a.active:hover { background: var(--accent); color: var(--on-accent); }
     transition: transform .3s cubic-bezier(.2,.7,.2,1), visibility 0s linear .3s;
     overflow-y: auto;
   }
-  nav.top a { font-size: 18px; padding: 12px 14px; }
+  nav.top a { font-size: 18px; padding: 12px 16px; margin: 0 4px; border-radius: 8px; }
   .nav-open nav.top { transform: none; visibility: visible; transition: transform .3s cubic-bezier(.2,.7,.2,1); }
   .nav-scrim {
     display: block; position: fixed; inset: 0; z-index: 0;
