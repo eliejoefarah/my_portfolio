@@ -53,6 +53,8 @@
       if (!current || s.getBoundingClientRect().top < current.getBoundingClientRect().top) current = s;
     });
     if (current) setActive(current);
+    // Above the first section (the hero), keep the first link highlighted.
+    else if (sections[0].getBoundingClientRect().top > 0) setActive(sections[0]);
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
   sections.forEach(function (s) { observer.observe(s); });

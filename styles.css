@@ -23,7 +23,7 @@
   --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --gutter: 150px;
   --maxw: 1000px;
-  --header-h: 52px;
+  --header-h: 64px;
 }
 
 :root[data-theme="dark"] {
@@ -105,7 +105,7 @@ header.site {
 .site-inner {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 14px 32px;
+  padding: 17px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,35 +116,40 @@ header.site {
   font-weight: 500;
   letter-spacing: .05em;
   color: var(--ink);
-  font-size: 14px;
+  font-size: 17px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .brand b { color: var(--accent); font-weight: 500; }
-.brand-seal { width: 22px; height: 22px; object-fit: contain; }
+.brand-seal { width: 27px; height: 27px; object-fit: contain; }
 .header-right { display: flex; align-items: center; gap: 24px; }
-nav.top { display: flex; gap: 24px; }
+nav.top { display: flex; gap: 12px; }
 nav.top a {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: .06em;
-  color: var(--ink-2);
-  text-transform: lowercase;
+  color: var(--accent);
+  text-transform: capitalize;
+  /* Every link carries the box padding so the active highlight doesn't shift the layout. */
+  padding: 5px 8px;
+  border-radius: 2px;
+  transition: background-color .15s, color .15s;
 }
-nav.top a:hover,
-nav.top a.active { color: var(--accent); }
-@media (max-width: 860px) { nav.top { gap: 16px; } .header-right { gap: 16px; } }
-@media (max-width: 680px) { nav.top { display: none; } }
+nav.top a:hover { color: var(--accent-hover); }
+nav.top a.active,
+nav.top a.active:hover { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 860px) { nav.top { gap: 4px; } .header-right { gap: 16px; } }
+@media (max-width: 760px) { nav.top { display: none; } }
 
 .theme-toggle {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: .06em;
   color: var(--ink-2);
   background: transparent;
   border: 1px solid var(--rule);
-  padding: 6px 10px;
+  padding: 7px 12px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -152,7 +157,8 @@ nav.top a.active { color: var(--accent); }
   line-height: 1;
 }
 .theme-toggle:hover { color: var(--ink); border-color: var(--ink-3); }
-.theme-toggle .glyph { font-size: 13px; }
+.theme-toggle .glyph { font-size: 15px; }
+.theme-toggle .txt { text-transform: capitalize; }
 
 /* ---------- Sections / grid ---------- */
 section { padding: 88px 0; border-top: 1px solid var(--rule); }
